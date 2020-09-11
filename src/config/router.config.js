@@ -1,7 +1,6 @@
 // eslint-disable-next-line
-import { UserLayout, BasicLayout, BlankLayout } from '@/layouts'
+import { UserLayout, BasicLayout, BlankLayout,PageView } from '@/layouts'
 import { bxAnaalyse } from '@/core/icons'
-
 const RouteView = {
   name: 'RouteView',
   render: (h) => h('router-view')
@@ -260,10 +259,9 @@ export const asyncRouterMap = [
             ]
           }
         ]
-      }
+      },
 
       // other
-      /*
       {
         path: '/other',
         name: 'otherPage',
@@ -322,8 +320,30 @@ export const asyncRouterMap = [
             ]
           }
         ]
+      },
+
+      // crm
+      {
+        path: '/crm',
+        component: RouteView,
+        redirect: '/crm/customer',
+        name: 'crm',
+        meta: { title: '商务管理', icon: 'user', keepAlive: true, permission: [ 'dashboard' ] },
+        children: [
+          {
+            path: '/crm/customer',
+            name: 'customer',
+            component: () => import('@/views/crm/customer/Index'),
+            meta: { title: '客户管理', permission: [ 'dashboard' ] }
+          },
+          {
+            path: '/crm/contract',
+            name: 'contract',
+            component: () => import('@/views/crm/contract/Index'),
+            meta: { title: '合同管理', permission: [ 'dashboard' ] }
+          }
+        ]
       }
-      */
     ]
   },
   {
